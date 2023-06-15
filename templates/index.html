@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Scoring</title>
+    <link rel="icon" href="http://10.0.0.42/static/images/favicon.ico">
+    <style>
+      body {
+        background-color: black;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .box {
+        width: 250px;
+        height: 250px;
+        background-color: hsl(0, 0%, 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 90px;
+        font-weight: bold;
+        transition: background-color 0.5s ease-in-out;
+      }
+      .spacer {
+        width: 250px;
+        height: 250px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 90px;
+        font-weight: bold;
+        color: white;
+      }
+      .highlight {
+        background-color: hsl(0, 0%, 60%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box" id="box1"></div>
+      <div class="spacer" id="spacer"></div>
+      <div class="box" id="box2"></div>
+    </div>
+    <img id="inning" src="" alt="Image" style="position: absolute; top: 90%; left: 50%; transform: translateX(-50%); width: 25%;">
+    <script>
+      var source = new EventSource("/numbers");
+      var box1 = document.getElementById("box1");
+      var box2 = document.getElementById("box2");
+      var spacer = document.getElementById("spacer");
+      var highlightedBox = null;
+      
+      source.onmessage = function(event) {
+        var data = event.data.split(",");
+        var num1 = parseInt(data[0]);
+        var num2 = parseInt(data[1]);
+        var num3 = parseInt(data[2]);
+        var num4 = data[3];
+        var num5 = data[4];
+        var num6=data[5];
+        var num7=parseInt(data[6]);
+        var inning=parseInt(data[7])
+        var audio = new Audio("{{ sound_effect_url }}");
+        var image = document.getElementById('inning');
+        if (inning === 1) {
+          image.src = 'http://10.0.0.42/static/images/1.png';
+        }
+        if (inning === 2) {
+          image.src = 'http://10.0.0.42/static/images/2.png';
+        }
+        if (inning === 3) {
+          image.src = 'http://10.0.0.42/static/images/3.png';
+        }
+        if (inning === 4) {
+          image.src = 'http://10.0.0.42/static/images/4.png';
+        }
+        if (inning === 5) {
+          image.src = 'http://10.0.0.42/static/images/5.png';
+        }
+        if (inning === 6) {
+          image.src = 'http://10.0.0.42/static/images/6.png';
+        }
+        if (num7 == 1) {
+          audio.play();
+        }
+        document.getElementById("title").innerHTML = num5;
+        document.getElementById("ad1").innerHTML = num6;
+        if (num3 == 0) {
+          if (highlightedBox === box2) {
+            highlightedBox.classList.remove("highlight");
+          }
+          box1.classList.add("highlight");
+          highlightedBox = box1;
+        } else {
+          if (highlightedBox === box1) {
+            highlightedBox.classList.remove("highlight");
+          }
+          box2.classList.add("highlight");
+          highlightedBox = box2;
+        }
+        if (num3 == 3) {
+          highlightedBox.classList.remove("highlight");
+        }
+        box1.innerHTML = num1;
+        box2.innerHTML = num2;
+        spacer.innerHTML = num4;
+      };
+    </script>
+    
+    </div>
+    <div style="font-size: 20px; color: white; position: absolute; width: 100%; top: 10%; left: 50%; text-align: center; transform: translateX(-50%);">
+      <h1 id="title"></h1>
+    </div>
+    <div style="width: 100%; color: white; position: absolute; top: 110%; left: 50%; text-align: center; transform: translateX(-50%);">
+      <h1 id="ad1"></h1>
+    </div>
+  </body>
+</html>
