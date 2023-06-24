@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    sound_effect_url = '/static/sounds/ding.mp3'
-    return render_template('index.html', sound_effect_url=sound_effect_url)
+    return render_template('index.html')
 
 def get_numbers():
     import random
@@ -32,7 +31,7 @@ def get_numbers():
         if not switch==trigger:
             sound=1
             trigger=switch
-            print('sound')
+            print(str(sound))
         else:
             sound=0
         yield f"data: {team1},{team2},{switch},{rounds},{title},{ad1},{sound},{inning}\n\n"
@@ -42,5 +41,8 @@ def get_numbers():
 def stream():
     return Response(get_numbers(), mimetype='text/event-stream')
 
+@app.route('/home')
+def homepage():
+    return render_template('home.html')
 if __name__ == '__main__':
     app.run(host='10.0.0.42', port=80)
