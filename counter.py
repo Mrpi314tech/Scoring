@@ -1,10 +1,10 @@
 import time
 import random
 def update_data():
-    file1 = open("/home/mrpi314/Scoring/database.py", "w")
+    file1 = open("/root/Scoring/database.py", "w")
     file1.write("team1="+str(team1)+"\nteam2="+str(team2)+"\nswitch="+str(switch)+"\nrounds="+str(rounds)+'\ntitle="'+title+'"'+'\nad1="'+ad1+'"'+'\ninning='+str(innings))
     file1.close()
-with open("/home/mrpi314/Scoring/input.txt", "r") as inputtxt:
+with open("/root/Scoring/input.txt", "r") as inputtxt:
     title=inputtxt.readline().strip()
     ad1=inputtxt.readline().strip()
     wait=inputtxt.readline().strip()
@@ -37,6 +37,6 @@ for i in range(0,6):
     update_data()
 switch=3
 rounds="Score"
-file1 = open("/home/mrpi314/Scoring/database.py", "w")
+file1 = open("/root/Scoring/database.py", "w")
 file1.write("team1="+str(team1)+"\nteam2="+str(team2)+"\nswitch="+str(switch)+'\nrounds="'+str(rounds)+'"\ntitle="'+title+'"'+'\nad1="'+ad1+'"'+'\ninning='+str(innings))
 file1.close()
