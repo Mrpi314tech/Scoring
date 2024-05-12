@@ -45,4 +45,4 @@ def stream():
 def homepage():
     return render_template('home.html')
 if __name__ == '__main__':
-    app.run(host='172.235.133.234', port=80)
+    app.run(host='172.233.181.74', port=80)
