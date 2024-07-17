@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Scoring</title>
-    <link rel="icon" href="http://172.233.181.74/static/images/favicon.ico">
+    <link rel="icon" href="/static/images/favicon.ico">
     <style>
       body {
         background-color: black;
@@ -70,7 +70,7 @@
       var spacer = document.getElementById("spacer");
       var highlightedBox = null;
       function playAudio() {
-        var audio = new Audio("http://172.233.181.74/static/sounds/ding.mp3");
+        var audio = new Audio("/static/sounds/ding.mp3");
         audio.play();
       }
       document.addEventListener("click", function() {
@@ -90,28 +90,28 @@
         var num6 = data[5];
         var num7 = parseInt(data[6]);
         var inning = parseInt(data[7]);
-        var audio = new Audio("http://172.233.181.74/static/sounds/ding.mp3");
+        var audio = new Audio("/static/sounds/ding.mp3");
         var image = document.getElementById('inning');
         if (inning === 1) {
-          image.src = 'http://172.233.181.74/static/images/1.png';
+          image.src = '/static/images/1.png';
         }
         if (inning === 2) {
-          image.src = 'http://172.233.181.74/static/images/2.png';
+          image.src = '/static/images/2.png';
         }
         if (inning === 3) {
-          image.src = 'http://172.233.181.74/static/images/3.png';
+          image.src = '/static/images/3.png';
         }
         if (inning === 4) {
-          image.src = 'http://172.233.181.74/static/images/4.png';
+          image.src = '/static/images/4.png';
         }
         if (inning === 5) {
-          image.src = 'http://172.233.181.74/static/images/5.png';
+          image.src = '/static/images/5.png';
         }
         if (inning === 6) {
-          image.src = 'http://172.233.181.74/static/images/6.png';
+          image.src = '/static/images/6.png';
         }
         if (inning === 7) {
-          image.src = 'http://172.233.181.74/static/images/7.png';
+          image.src = '/static/images/7.png';
         }
         if (num7 === 1) {
           audio.play();
